@@ -86,39 +86,45 @@
 
       <div class="container">
 
-        <div class="row gy-4">
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
-            <h3>Voluptatem dignissimos provident laboris nisi ut aliquip ex ea commodo</h3>
-              <img class="img-fluid rounded-4 mb-4" src="{{ asset('img/about.jpg') }}">
-            <p>Ut fugiat ut sunt quia veniam. Voluptate perferendis perspiciatis quod nisi et. Placeat debitis quia recusandae odit et consequatur voluptatem. Dignissimos pariatur consectetur fugiat voluptas ea.</p>
-            <p>Temporibus nihil enim deserunt sed ea. Provident sit expedita aut cupiditate nihil vitae quo officia vel. Blanditiis eligendi possimus et in cum. Quidem eos ut sint rem veniam qui. Ut ut repellendus nobis tempore doloribus debitis explicabo similique sit. Accusantium sed ut omnis beatae neque deleniti repellendus.</p>
-          </div>
-          <div class="col-lg-6" data-aos="fade-up" data-aos-delay="250">
-            <div class="content ps-0 ps-lg-5">
-              <p class="fst-italic">
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-                magna aliqua.
-              </p>
-              <ul>
-                <li><i class="bi bi-check-circle-fill"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat.</span></li>
-                <li><i class="bi bi-check-circle-fill"></i> <span>Duis aute irure dolor in reprehenderit in voluptate velit.</span></li>
-                <li><i class="bi bi-check-circle-fill"></i> <span>Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate trideta storacalaperda mastiro dolore eu fugiat nulla pariatur.</span></li>
-              </ul>
-              <p>
-                Ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate
-                velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident
-              </p>
+  <div class="row gy-4">
+    <!-- Kolom Kiri: Visi dan Sejarah -->
+    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="100">
+      <h3>Visi & Sejarah Kominfo Kota Binjai</h3>
+      <img class="img-fluid rounded-4 mb-4" src="{{ asset('img/about.jpg') }}" alt="Kominfo Binjai">
+      <p>
+        Dinas Komunikasi dan Informatika Kota Binjai awalnya merupakan bagian dari Dinas Perhubungan. Seiring dengan kebutuhan akan pengelolaan informasi yang lebih modern dan terintegrasi, maka dibentuklah Kominfo sebagai perangkat daerah tersendiri. Kominfo memiliki peran sentral dalam digitalisasi layanan publik, penyebaran informasi, dan penguatan komunikasi antara pemerintah dengan masyarakat.
+      </p>
+      <p>
+        <strong>Visi:</strong><br>
+        “Mewujudkan komunikasi dan informasi yang transparan, partisipatif, dan berbasis teknologi informasi untuk mendukung pemerintahan yang baik dan bersih.”
+      </p>
+    </div>
 
-              <div class="position-relative mt-4">
-                  <img class="img-fluid rounded-4" src="{{ asset('img/about-2.jpg') }}" alt="">
+    <!-- Kolom Kanan: Misi -->
+    <div class="col-lg-6" data-aos="fade-up" data-aos-delay="250">
+      <div class="content ps-0 ps-lg-5">
+        <p class="fst-italic">
+          Misi Kominfo Kota Binjai bertujuan untuk mendukung pemerintahan yang efektif melalui teknologi dan komunikasi.
+        </p>
+        <ul>
+          <li><i class="bi bi-check-circle-fill"></i> <span>Menyebarkan informasi pembangunan secara cepat, tepat, dan akurat.</span></li>
+          <li><i class="bi bi-check-circle-fill"></i> <span>Mengembangkan sistem pemerintahan berbasis elektronik (e-Government).</span></li>
+          <li><i class="bi bi-check-circle-fill"></i> <span>Mendorong partisipasi publik melalui media komunikasi yang efektif.</span></li>
+          <li><i class="bi bi-check-circle-fill"></i> <span>Meningkatkan kualitas layanan TIK untuk perangkat daerah dan masyarakat.</span></li>
+          <li><i class="bi bi-check-circle-fill"></i> <span>Menjalin kerja sama informasi dengan berbagai pihak strategis.</span></li>
+        </ul>
+        <p>
+          Seluruh misi tersebut mendukung terwujudnya Kota Binjai sebagai kota yang informatif, transparan, dan responsif dalam pelayanan publik berbasis digital.
+        </p>
 
-                <a href="https://www.youtube.com/watch?v=Y7f98aduVJ8" class="glightbox pulsating-play-btn"></a>
-              </div>
-            </div>
-          </div>
+        <div class="position-relative mt-4">
+          <img class="img-fluid rounded-4" src="{{ asset('img/Diskominfo.png') }}" alt="Video Kominfo">
+          <a href="https://www.youtube.com/watch?v=f7SgxSi6wm0" class="glightbox pulsating-play-btn" aria-label="Play Video"></a>
         </div>
-
       </div>
+    </div>
+  </div>  
+</div>
 
     </section><!-- /About Section -->
 
