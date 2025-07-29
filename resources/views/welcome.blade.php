@@ -4,7 +4,7 @@
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
-  <title>Index - Dewi Bootstrap Template</title>
+  <title>Makombi app</title>
   <meta name="description" content="">
   <meta name="keywords" content="">
 
@@ -13,6 +13,9 @@
 
 <!-- Favicon -->
 <link rel="icon" href="{{ asset('img/favicon.png') }}">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
 
 
 
@@ -50,14 +53,13 @@
           <li><a href="#hero" class="active">Home</a></li>
           <li><a href="#about">Informasi</a></li>
           <li><a href="#services">Galeri</a></li>
-          <li><a href="#portfolio">Berita</a></li>
           <li><a href="#portfolio">Kontak</a></li>
 
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
       </nav>
 
-      <a class="cta-btn" href="">Login</a>
+      <a class="cta-btn" href="{{ route('login') }}">Login</a>
 
     </div>
   </header>
@@ -75,7 +77,7 @@
         <h2 data-aos="fade-up" data-aos-delay="100">MAGANG KOMINFO BINJAI</h2>
         <p data-aos="fade-up" data-aos-delay="200">Program magang resmi dari Dinas Komunikasi dan Informatika Kota Binjai untuk mahasiswa dan pelajar yang ingin belajar langsung di lingkungan kerja profesional dan berkontribusi dalam pelayanan informasi publik</p>
         <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
-          <a href="#about" class="btn-get-started">Daftar Sekarang</a>
+          <a href="" class="btn-get-started">Daftar Sekarang</a>
         </div>
       </div>
 
@@ -131,40 +133,41 @@
 
           <div class="col-lg-3 col-md-6">
             <div class="stats-item d-flex align-items-center w-100 h-100">
-              <i class="bi bi-emoji-smile color-blue flex-shrink-0"></i>
+              
+              <i class="fas fa-user-graduate color-orange flex-shrink-0"></i>
               <div>
-                <span data-purecounter-start="0" data-purecounter-end="232" data-purecounter-duration="1" class="purecounter"></span>
-                <p>Happy Clients</p>
+                <span data-purecounter-start="0" data-purecounter-end="10" data-purecounter-duration="1" class="purecounter"></span>
+                <p>Alumni Magang</p>
               </div>
             </div>
           </div><!-- End Stats Item -->
 
           <div class="col-lg-3 col-md-6">
             <div class="stats-item d-flex align-items-center w-100 h-100">
-              <i class="bi bi-journal-richtext color-orange flex-shrink-0"></i>
+               <i class="fas fa-university color-orange flex-shrink-0"></i>
               <div>
-                <span data-purecounter-start="0" data-purecounter-end="521" data-purecounter-duration="1" class="purecounter"></span>
-                <p>Projects</p>
+                <span data-purecounter-start="0" data-purecounter-end="3" data-purecounter-duration="1" class="purecounter"></span>
+                <p>Universitas Terkait</p>
               </div>
             </div>
           </div><!-- End Stats Item -->
 
           <div class="col-lg-3 col-md-6">
             <div class="stats-item d-flex align-items-center w-100 h-100">
-              <i class="bi bi-headset color-green flex-shrink-0"></i>
+               <i class="fas fa-file-alt color-orange flex-shrink-0"></i>
               <div>
-                <span data-purecounter-start="0" data-purecounter-end="1463" data-purecounter-duration="1" class="purecounter"></span>
-                <p>Hours Of Support</p>
+                <span data-purecounter-start="0" data-purecounter-end="20" data-purecounter-duration="1" class="purecounter"></span>
+                <p>Pendaftar</p>
               </div>
             </div>
           </div><!-- End Stats Item -->
 
           <div class="col-lg-3 col-md-6">
             <div class="stats-item d-flex align-items-center w-100 h-100">
-              <i class="bi bi-people color-pink flex-shrink-0"></i>
+              <i class="fas fa-check-circle color-orange flex-shrink-0"></i>
               <div>
-                <span data-purecounter-start="0" data-purecounter-end="15" data-purecounter-duration="1" class="purecounter"></span>
-                <p>Hard Workers</p>
+                <span data-purecounter-start="0" data-purecounter-end="20" data-purecounter-duration="1" class="purecounter"></span>
+                <p>Diterima</p>
               </div>
             </div>
           </div><!-- End Stats Item -->
@@ -310,7 +313,6 @@
             <li><i class="bi bi-chevron-right"></i> <a href="#">Home</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="#">Informasi</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="#">Galeri</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Berita</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="#">Kontak</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
           </ul>
