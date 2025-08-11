@@ -77,7 +77,7 @@
         <h2 data-aos="fade-up" data-aos-delay="100">MAGANG KOMINFO BINJAI</h2>
         <p data-aos="fade-up" data-aos-delay="200">Program magang resmi dari Dinas Komunikasi dan Informatika Kota Binjai untuk mahasiswa dan pelajar yang ingin belajar langsung di lingkungan kerja profesional dan berkontribusi dalam pelayanan informasi publik</p>
         <div class="d-flex mt-4" data-aos="fade-up" data-aos-delay="300">
-          <a href="" class="btn-get-started">Daftar Sekarang</a>
+          <a href="{{route('mahasiswa.create')}}" class="btn-get-started">Daftar Sekarang</a>
         </div>
       </div>
 
