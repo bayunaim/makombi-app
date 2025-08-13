@@ -20,6 +20,7 @@ class Mahasiswa extends Model
         'tanggal_masuk',
         'tanggal_keluar',
         'file',
+        'diterima',
         // tambahkan field lain sesuai kebutuhan
     ];
 }

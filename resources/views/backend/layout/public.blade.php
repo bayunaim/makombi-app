@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="csrf-token" content="{{ csrf_token() }}">
     <title>@yield('title', 'Public Page')</title>
     
     <!--begin::Accessibility Meta Tags-->
@@ -69,13 +70,11 @@
       crossorigin="anonymous"
     />
 </head>
-<body>
-    <!--begin::Body-->
-  <body class="layout-fixed sidebar-expand-lg sidebar-open bg-body-tertiary">
+<body class="layout-fixed sidebar-expand-lg sidebar-open bg-body-tertiary">
     <!--begin::App Wrapper-->
     <div class="app-wrapper">
       <!--begin::Header-->
-      <nav class="app-header navbar navbar-expand bg-body">
+      <nav class="app-header navbar navbar-expand bg-body" role="navigation" aria-label="Top navigation">
         <!--begin::Container-->
         <div class="container-fluid">
           <!--begin::Start Navbar Links-->
@@ -85,45 +84,27 @@
                 <i class="bi bi-list"></i>
               </a>
             </li>
-            <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Home</a></li>
-            <li class="nav-item d-none d-md-block"><a href="#" class="nav-link">Contact</a></li>
+            <li class="nav-item d-none d-md-block"><a href="{{ route('dashboard') }}" class="nav-link">Dashboard</a></li>
           </ul>
           <!--end::Start Navbar Links-->
           <!--begin::End Navbar Links-->
           <ul class="navbar-nav ms-auto">
-            <!--begin::Navbar Search-->
-            <li class="nav-item">
-              <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                <i class="bi bi-search"></i>
-              </a>
-            </li>
-            <!--end::Navbar Search-->
+           
             
             <!--begin::Notifications Dropdown Menu-->
             <li class="nav-item dropdown">
-              <a class="nav-link" data-bs-toggle="dropdown" href="#">
+              <a class="nav-link" data-bs-toggle="dropdown" href="#" id="notificationDropdown">
                 <i class="bi bi-bell-fill"></i>
-                <span class="navbar-badge badge text-bg-warning">15</span>
+                <span class="navbar-badge badge text-bg-warning" id="notificationBadge">0</span>
               </a>
-              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                <span class="dropdown-item dropdown-header">15 Notifications</span>
+              <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end" id="notificationMenu">
+                <span class="dropdown-item dropdown-header" id="notificationHeader">0 Notifikasi</span>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                  <i class="bi bi-envelope me-2"></i> 4 new messages
-                  <span class="float-end text-secondary fs-7">3 mins</span>
-                </a>
+                <div id="notificationList">
+                  <!-- Notifications will be loaded here -->
+                </div>
                 <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                  <i class="bi bi-people-fill me-2"></i> 8 friend requests
-                  <span class="float-end text-secondary fs-7">12 hours</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item">
-                  <i class="bi bi-file-earmark-fill me-2"></i> 3 new reports
-                  <span class="float-end text-secondary fs-7">2 days</span>
-                </a>
-                <div class="dropdown-divider"></div>
-                <a href="#" class="dropdown-item dropdown-footer"> See All Notifications </a>
+                <a href="{{ route('notifications.page') }}" class="dropdown-item dropdown-footer">View All Notifications</a>
               </div>
             </li>
             <!--end::Notifications Dropdown Menu-->
@@ -135,42 +116,27 @@
               </a>
             </li>
             <!--end::Fullscreen Toggle-->
-            <!--begin::User Menu Dropdown-->
-            <li class="nav-item dropdown user-menu">
+            <!--begin::User Menu-->
+            <li class="nav-item dropdown">
               <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown">
-                <img
-                  src="{{ asset('img/adminlte/user2-160x160.jpg') }}"
-                  class="user-image rounded-circle shadow"
-                  alt="User Image"
-                />
-                <span class="d-none d-md-inline">Alexander Pierce</span>
+                <i class="bi bi-person-circle me-1"></i>
+                <span class="d-none d-md-inline">{{ Auth::user()->name ?? 'User' }}</span>
               </a>
-              <ul class="dropdown-menu dropdown-menu-lg dropdown-menu-end">
-                <!--begin::User Image-->
-                <li class="user-header text-bg-primary">
-                  <img
-                    src="{{ asset('img/adminlte/user2-160x160.jpg') }}"
-                    class="rounded-circle shadow"
-                    alt="User Image"
-                  />
-                  <p>
-                    Alexander Pierce - Web Developer
-                    <small>Member since Nov. 2023</small>
-                  </p>
+              <ul class="dropdown-menu dropdown-menu-end">
+                <li>
+                  <span class="dropdown-item-text">
+                    <i class="bi bi-person me-2"></i>{{ Auth::user()->name ?? 'User' }}
+                  </span>
                 </li>
-                <!--end::User Image-->
-                <!--begin::Menu Body-->
-                
-                <!--end::Menu Body-->
-                <!--begin::Menu Footer-->
-                <li class="user-footer">
-                  <a href="#" class="btn btn-default btn-flat">Profile</a>
-                  <a href="#" class="btn btn-default btn-flat float-end">Sign out</a>
+                <li><hr class="dropdown-divider"></li>
+                <li>
+                  <a href="{{ route('logout') }}" class="dropdown-item text-danger">
+                    <i class="bi bi-box-arrow-right me-2"></i>Sign Out
+                  </a>
                 </li>
-                <!--end::Menu Footer-->
               </ul>
             </li>
-            <!--end::User Menu Dropdown-->
+            <!--end::User Menu-->
           </ul>
           <!--end::End Navbar Links-->
         </div>
@@ -178,11 +144,11 @@
       </nav>
       <!--end::Header-->
       <!--begin::Sidebar-->
-      <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark">
+       <aside class="app-sidebar bg-body-secondary shadow" data-bs-theme="dark" aria-label="Sidebar navigation">
         <!--begin::Sidebar Brand-->
         <div class="sidebar-brand">
           <!--begin::Brand Link-->
-          <a href="./index.html" class="brand-link">
+          <a href="{{ route('dashboard') }}" class="brand-link">
             <!--begin::Brand Image-->
             <img
               src="{{ asset('img/adminlte/AdminLTELogo.png') }}"
@@ -209,28 +175,51 @@
               data-accordion="false"
               id="navigation"
             >
-              <li class="nav-item menu-open">
-                <a href="#" class="nav-link active">
+            <li class="nav-item">
+                <a href="{{ route('dashboard') }}" class="nav-link active">
                   <i class="nav-icon bi bi-speedometer"></i>
                   <p>
                     Dashboard
-                    <i class="nav-arrow bi bi-chevron-right"></i>
+                  
                   </p>
                 </a>
-                <ul class="nav nav-treeview">
-                  
-                </ul>
-              </li>
+                </li>
+                  <li class="nav-item">
+                    <a href="{{ route('pendaftar.index') }}" class="nav-link">
+                      <i class="bi bi-people-fill nav-icon"></i>
+                      <p>Pendaftar</p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="{{ route('pendaftar.diterima.index') }}" class="nav-link">
+                      <i class="bi bi-check2-circle nav-icon"></i>
+                      <p>Diterima</p>
+                    </a>
+                  </li>
+                              <li class="nav-item">
+              <a href="{{ route('notifications.page') }}" class="nav-link">
+                <i class="bi bi-bell nav-icon"></i>
+                <p>
+                  Notifikasi
+                  @if(\App\Models\Notification::unread()->count() > 0)
+                    <span class="badge badge-warning right">{{ \App\Models\Notification::unread()->count() }}</span>
+                  @endif
+                </p>
+              </a>
+            </li>
+            
+            <li class="nav-item">
+                    <a href="{{ route('contact.index') }}" class="nav-link">
+                      <i class="bi bi-chat-dots nav-icon"></i>
+                      <p>Pesan Masuk</p>
+                    </a>
+                  </li>
+                
+              
               
                 
               
-              <li class="nav-header">DOCUMENTATIONS</li>
-              <li class="nav-item">
-                <a href="./docs/introduction.html" class="nav-link">
-                  <i class="nav-icon bi bi-download"></i>
-                  <p>Installation</p>
-                </a>
-              </li>
+              
               
               
             </ul>
@@ -340,5 +329,166 @@
       crossorigin="anonymous"
     ></script>
     <!--end::Script-->
+    
+    @stack('styles')
+    @stack('scripts')
+    
+    <!-- Notification System JavaScript -->
+    <script>
+        class NotificationSystem {
+            constructor() {
+                this.notificationBadge = document.getElementById('notificationBadge');
+                this.notificationHeader = document.getElementById('notificationHeader');
+                this.notificationList = document.getElementById('notificationList');
+                
+                this.init();
+            }
+            
+            init() {
+                this.loadNotifications();
+                this.startPolling();
+            }
+            
+            async loadNotifications() {
+                try {
+                    const response = await fetch('/notifications/unread');
+                    const data = await response.json();
+                    
+                    this.updateNotificationBadge(data.unread_count);
+                    this.updateNotificationHeader(data.unread_count);
+                    this.renderNotifications(data.notifications);
+                } catch (error) {
+                    console.error('Error loading notifications:', error);
+                }
+            }
+            
+            updateNotificationBadge(count) {
+                this.notificationBadge.textContent = count;
+                this.notificationBadge.style.display = count > 0 ? 'inline' : 'none';
+            }
+            
+            updateNotificationHeader(count) {
+                this.notificationHeader.textContent = `${count} Notifications`;
+            }
+            
+            renderNotifications(notifications) {
+                if (notifications.length === 0) {
+                    this.notificationList.innerHTML = '<div class="dropdown-item text-muted">No new notifications</div>';
+                    return;
+                }
+                
+                this.notificationList.innerHTML = notifications.map(notification => `
+                    <a href="#" class="dropdown-item notification-item" data-id="${notification.id}">
+                        <i class="bi bi-people-fill me-2"></i> ${notification.message}
+                        <span class="float-end text-secondary fs-7">${this.formatTime(notification.created_at)}</span>
+                    </a>
+                `).join('');
+                
+                // Add click event to redirect to notification page
+                this.notificationList.querySelectorAll('.notification-item').forEach(item => {
+                    item.addEventListener('click', (e) => {
+                        e.preventDefault();
+                        const notificationId = item.dataset.id;
+                        // Redirect to notification page with the specific notification
+                        window.location.href = `/notifications/${notificationId}/read-and-redirect`;
+                    });
+                });
+            }
+            
+
+            
+
+            
+            formatTime(timestamp) {
+                const date = new Date(timestamp);
+                const now = new Date();
+                const diffInMinutes = Math.floor((now - date) / (1000 * 60));
+                
+                if (diffInMinutes < 1) return 'Just now';
+                if (diffInMinutes < 60) return `${diffInMinutes} mins`;
+                
+                const diffInHours = Math.floor(diffInMinutes / 60);
+                if (diffInHours < 24) return `${diffInHours} hours`;
+                
+                const diffInDays = Math.floor(diffInHours / 24);
+                return `${diffInDays} days`;
+            }
+            
+            startPolling() {
+                // Poll for new notifications every 30 seconds
+                setInterval(() => {
+                    this.loadNotifications();
+                }, 30000);
+            }
+        }
+        
+        // Initialize notification system when DOM is loaded
+        document.addEventListener('DOMContentLoaded', function() {
+            window.notificationSystem = new NotificationSystem();
+        });
+    </script>
+    
+    <style>
+    /* User Menu Styling */
+    .nav-item.dropdown .nav-link {
+        display: flex;
+        align-items: center;
+        padding: 0.5rem 1rem;
+        color: #6c757d;
+        text-decoration: none;
+        transition: color 0.15s ease-in-out;
+        border-radius: 0.375rem;
+    }
+    
+    .nav-item.dropdown .nav-link:hover {
+        color: #495057;
+        background-color: rgba(0, 0, 0, 0.05);
+    }
+    
+    .nav-item.dropdown .dropdown-toggle::after {
+        margin-left: 0.5rem;
+        transition: transform 0.15s ease-in-out;
+    }
+    
+    .nav-item.dropdown.show .dropdown-toggle::after {
+        transform: rotate(180deg);
+    }
+    
+    .dropdown-item-text {
+        color: #6c757d;
+        font-weight: 500;
+        padding: 0.5rem 1rem;
+    }
+    
+    .dropdown-item.text-danger {
+        transition: all 0.15s ease-in-out;
+    }
+    
+    .dropdown-item.text-danger:hover {
+        background-color: #f8d7da;
+        color: #721c24 !important;
+        transform: translateX(2px);
+    }
+    
+    .dropdown-item.text-danger:focus {
+        background-color: #f8d7da;
+        color: #721c24 !important;
+    }
+    
+    /* Responsive adjustments */
+    @media (max-width: 768px) {
+        .nav-item.dropdown .nav-link span {
+            display: none;
+        }
+        
+        .nav-item.dropdown .nav-link {
+            padding: 0.5rem;
+        }
+        
+        .dropdown-item-text {
+            padding: 0.5rem;
+        }
+    }
+    </style>
 </body>
 </html>

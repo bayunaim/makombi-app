@@ -31,13 +31,13 @@
         }
     </style>
 </head>
-<body class="min-h-screen relative overflow-hidden bg-gradient-to-br from-purple-900 via-blue-900 to-indigo-800">
+<body class="min-h-screen relative overflow-hidden bg-gradient-to-br from-green-900 via-emerald-900 to-green-800">
     <!-- Background Decorations -->
     <div class="absolute inset-0 overflow-hidden">
         <!-- Animated Gradient Orbs -->
-        <div class="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
-        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-r from-yellow-400 to-orange-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse animation-delay-2000"></div>
-        <div class="absolute top-40 left-40 w-60 h-60 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse animation-delay-4000"></div>
+        <div class="absolute -top-40 -right-40 w-80 h-80 bg-gradient-to-r from-green-400 to-emerald-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse"></div>
+        <div class="absolute -bottom-40 -left-40 w-80 h-80 bg-gradient-to-r from-lime-300 to-green-400 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse animation-delay-2000"></div>
+        <div class="absolute top-40 left-40 w-60 h-60 bg-gradient-to-r from-emerald-400 to-green-500 rounded-full mix-blend-multiply filter blur-xl opacity-70 animate-pulse animation-delay-4000"></div>
         
         <!-- Geometric Patterns -->
         <div class="absolute top-0 left-0 w-full h-full">
@@ -57,17 +57,17 @@
         
         <!-- Floating Particles -->
         <div class="absolute top-1/4 left-1/4 w-2 h-2 bg-white rounded-full opacity-60 animate-ping"></div>
-        <div class="absolute top-3/4 right-1/4 w-1 h-1 bg-yellow-300 rounded-full opacity-80 animate-ping animation-delay-1000"></div>
-        <div class="absolute top-1/2 left-3/4 w-3 h-3 bg-pink-300 rounded-full opacity-40 animate-ping animation-delay-3000"></div>
+        <div class="absolute top-3/4 right-1/4 w-1 h-1 bg-lime-300 rounded-full opacity-80 animate-ping animation-delay-1000"></div>
+        <div class="absolute top-1/2 left-3/4 w-3 h-3 bg-emerald-300 rounded-full opacity-40 animate-ping animation-delay-3000"></div>
     </div>
     <div class="min-h-screen flex items-center justify-center py-12 px-4 sm:px-6 lg:px-8 relative z-10">
         <div class="max-w-md w-full space-y-6">
             <!-- Header -->
             <div class="text-center">
-                <div class="mx-auto h-16 w-16 bg-indigo-600 rounded-full flex items-center justify-center mb-4">
+                <div class="mx-auto h-16 w-16 bg-green-600 rounded-full flex items-center justify-center mb-4">
                     <i class="fas fa-user-circle text-white text-2xl"></i>
                 </div>
-                <h2 class="text-3xl font-bold text-white-900 mb-2">Adminstrator</h2>
+                <h2 class="text-3xl font-bold text-white mb-2">Adminstrator</h2>
                 <p class="text-gray-600"></p>
             </div>
 
@@ -87,15 +87,15 @@
                             type="email" 
                             autocomplete="email" 
                             required 
-                            value="{{ old('email') }}"
-                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200 @error('email') border-red-500 @enderror"
+                            value="{{ old('email') ?? '' }}"
+                            class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition duration-200 {{ $errors->has('email') ? 'border-red-500' : '' }}"
                             placeholder="Masukkan email Anda"
                         >
-                        @error('email')
+                        @if($errors->has('email'))
                             <p class="mt-2 text-sm text-red-600">
-                                <i class="fas fa-exclamation-circle mr-1"></i>{{ $message }}
+                                <i class="fas fa-exclamation-circle mr-1"></i>{{ $errors->first('email') }}
                             </p>
-                        @enderror
+                        @endif
                     </div>
 
                     <!-- Password Field -->
@@ -110,7 +110,7 @@
                                 type="password" 
                                 autocomplete="current-password" 
                                 required
-                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 transition duration-200 @error('password') border-red-500 @enderror"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-green-500 focus:border-green-500 transition duration-200 {{ $errors->has('password') ? 'border-red-500' : '' }}"
                                 placeholder="Masukkan password Anda"
                             >
                             <button 
@@ -121,11 +121,11 @@
                                 <i id="password-icon" class="fas fa-eye"></i>
                             </button>
                         </div>
-                        @error('password')
+                        @if($errors->has('password'))
                             <p class="mt-2 text-sm text-red-600">
-                                <i class="fas fa-exclamation-circle mr-1"></i>{{ $message }}
+                                <i class="fas fa-exclamation-circle mr-1"></i>{{ $errors->first('password') }}
                             </p>
-                        @enderror
+                        @endif
                     </div>
 
                     <!-- Remember Me & Forgot Password -->
@@ -135,7 +135,7 @@
                                 id="remember_me" 
                                 name="remember" 
                                 type="checkbox" 
-                                class="h-4 w-4 text-indigo-600 focus:ring-indigo-500 border-gray-300 rounded"
+                                class="h-4 w-4 text-green-600 focus:ring-green-500 border-gray-300 rounded"
                             >
                             <label for="remember_me" class="ml-2 block text-sm text-gray-700">
                                 Ingat saya
@@ -143,7 +143,7 @@
                         </div>
 
                         @if (Route::has('password.request'))
-                            <a href="{{ route('password.request') }}" class="text-sm text-indigo-600 hover:text-indigo-500 font-medium">
+                            <a href="{{ route('password.request') }}" class="text-sm text-green-600 hover:text-green-500 font-medium">
                                 Lupa password?
                             </a>
                         @endif
@@ -153,7 +153,7 @@
                     <div>
                         <button 
                             type="submit" 
-                            class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500 transition duration-200 transform hover:scale-105"
+                            class="w-full flex justify-center py-3 px-4 border border-transparent rounded-lg shadow-sm text-sm font-medium text-white bg-green-600 hover:bg-green-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-green-500 transition duration-200 transform hover:scale-105"
                         >
                             <i class="fas fa-sign-in-alt mr-2"></i>
                             Masuk
