@@ -14,7 +14,7 @@
               <div class="col-sm-6"><h3 class="mb-0">Dashboard</h3></div>
               <div class="col-sm-6">
                 <ol class="breadcrumb float-sm-end">
-                  <li class="breadcrumb-item"><a href="#">Home</a></li>
+                  
                   <li class="breadcrumb-item active" aria-current="page">Dashboard</li>
                 </ol>
               </div>
@@ -35,8 +35,8 @@
                 <!--begin::Small Box Widget 1-->
                 <div class="small-box text-bg-primary">
                   <div class="inner">
-                    <h3>150</h3>
-                    <p>New Orders</p>
+                    <h3>{{ \App\Models\Mahasiswa::count() }}</h3>
+                    <p>Total Pendaftar</p>
                   </div>
                   <svg
                     class="small-box-icon"
@@ -50,7 +50,7 @@
                     ></path>
                   </svg>
                   <a
-                    href="#"
+                    href="{{ route('pendaftar.index') }}"
                     class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
                   >
                     More info <i class="bi bi-link-45deg"></i>
@@ -63,8 +63,8 @@
                 <!--begin::Small Box Widget 2-->
                 <div class="small-box text-bg-success">
                   <div class="inner">
-                    <h3>53<sup class="fs-5">%</sup></h3>
-                    <p>Bounce Rate</p>
+                    <h3>{{ \App\Models\Mahasiswa::where('diterima', true)->count() }}</h3>
+                    <p>Pendaftar Diterima</p>
                   </div>
                   <svg
                     class="small-box-icon"
@@ -78,7 +78,7 @@
                     ></path>
                   </svg>
                   <a
-                    href="#"
+                    href="{{ route('pendaftar.diterima.index') }}"
                     class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
                   >
                     More info <i class="bi bi-link-45deg"></i>
@@ -91,8 +91,8 @@
                 <!--begin::Small Box Widget 3-->
                 <div class="small-box text-bg-warning">
                   <div class="inner">
-                    <h3>44</h3>
-                    <p>User Registrations</p>
+                    <h3>{{ \App\Models\Mahasiswa::where('diterima', false)->count() }}</h3>
+                    <p>Pendaftar Pending</p>
                   </div>
                   <svg
                     class="small-box-icon"
@@ -106,7 +106,7 @@
                     ></path>
                   </svg>
                   <a
-                    href="#"
+                    href="{{ route('pendaftar.index') }}"
                     class="small-box-footer link-dark link-underline-opacity-0 link-underline-opacity-50-hover"
                   >
                     More info <i class="bi bi-link-45deg"></i>
@@ -119,8 +119,8 @@
                 <!--begin::Small Box Widget 4-->
                 <div class="small-box text-bg-danger">
                   <div class="inner">
-                    <h3>65</h3>
-                    <p>Unique Visitors</p>
+                    <h3>{{ \App\Models\Notification::unread()->count() }}</h3>
+                    <p>Unread Notifications</p>
                   </div>
                   <svg
                     class="small-box-icon"
@@ -140,29 +140,53 @@
                       d="M12.75 3a.75.75 0 01.75-.75 8.25 8.25 0 018.25 8.25.75.75 0 01-.75.75h-7.5a.75.75 0 01-.75-.75V3z"
                     ></path>
                   </svg>
+                                     <a
+                     href="{{ route('notifications.page') }}"
+                     class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
+                   >
+                     View Notifications <i class="bi bi-link-45deg"></i>
+                   </a>
+                </div>
+                <!--end::Small Box Widget 4-->
+              </div>
+              <!--end::Col-->
+              <div class="col-lg-3 col-6">
+                <!--begin::Small Box Widget 5-->
+                <div class="small-box text-bg-info">
+                  <div class="inner">
+                    <h3>{{ $unreadContacts }}</h3>
+                    <p>Pesan Kontak Baru</p>
+                  </div>
+                  <svg
+                    class="small-box-icon"
+                    fill="currentColor"
+                    viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M1.5 8.67v8.58a3 3 0 003 3h15a3 3 0 003-3V8.67l-8.928 5.493a3 3 0 01-3.144 0L1.5 8.67z"
+                    ></path>
+                    <path
+                      d="M22.5 6.908V6.75a3 3 0 00-3-3h-15a3 3 0 00-3 3v.158l9.714 5.978a1.5 1.5 0 001.572 0L22.5 6.908z"
+                    ></path>
+                  </svg>
                   <a
-                    href="#"
+                    href="{{ route('contact.index') }}"
                     class="small-box-footer link-light link-underline-opacity-0 link-underline-opacity-50-hover"
                   >
                     More info <i class="bi bi-link-45deg"></i>
                   </a>
                 </div>
-                <!--end::Small Box Widget 4-->
+                <!--end::Small Box Widget 5-->
               </div>
               <!--end::Col-->
             </div>
             <!--end::Row-->
-            <!--begin::Row-->
-            <div class="row">
-              <!-- Start col -->
-              
-                    <!--end::Row-->
-                  </div>
-                </div>
-              </div>
-              <!-- /.Start col -->
-            </div>
-            <!-- /.row (main row) -->
+
+            
+                      
+
           </div>
           <!--end::Container-->
         </div>

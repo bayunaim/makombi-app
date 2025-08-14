@@ -9,7 +9,7 @@
         body {
             margin: 0;
             font-family: 'Roboto', sans-serif;
-            background: linear-gradient(135deg, #2980f2, #6dd5fa);
+            background: linear-gradient(135deg, #064e3b, #065f46, #166534);
             display: flex;
             align-items: center;
             justify-content: center;
@@ -23,7 +23,7 @@
             background: #fff;
             padding: 2.5rem;
             border-radius: 16px;
-            box-shadow: 0 10px 30px rgba(41, 128, 242, 0.3);
+            box-shadow: 0 10px 30px rgba(16, 185, 129, 0.30);
             width: 100%;
             max-width: 450px;
             display: flex;
@@ -53,7 +53,7 @@
         .btn-back-to-form {
             display: inline-block;
             padding: 0.9rem 2rem;
-            background: linear-gradient(90deg, #2980f2, #6dd5fa);
+            background: linear-gradient(90deg, #16a34a, #22c55e);
             color: #fff;
             font-size: 1.05rem;
             font-weight: 600;
@@ -65,7 +65,7 @@
         }
 
         .btn-back-to-form:hover {
-            background: linear-gradient(90deg, #2574d9, #4bb3e7);
+            background: linear-gradient(90deg, #15803d, #16a34a);
         }
     </style>
     {{-- Memasukkan pustaka Lottie Web Player --}}

@@ -43,7 +43,7 @@
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center">
 
-      <a href="index.html" class="logo d-flex align-items-center me-auto">
+      <a href="" class="logo d-flex align-items-center me-auto">
     
         <h1 class="sitename">Makombi</h1>
       </a>
@@ -53,7 +53,7 @@
           <li><a href="#hero" class="active">Home</a></li>
           <li><a href="#about">Informasi</a></li>
           <li><a href="#services">Galeri</a></li>
-          <li><a href="#portfolio">Kontak</a></li>
+          <li><a href="#contact">Kontak</a></li>
 
         </ul>
         <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
@@ -223,7 +223,7 @@
                 <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="200">
                   <i class="bi bi-geo-alt"></i>
                   <h3>Address</h3>
-                  <p>A108 Adam Street, New York, NY 535022</p>
+                  <p>Jl. Beringin, Kec. Binjai Kota, Kota Binjai, Sumatera Utara 20741</p>
                 </div>
               </div><!-- End Info Item -->
 
@@ -231,7 +231,7 @@
                 <div class="info-item d-flex flex-column justify-content-center align-items-center" data-aos="fade-up" data-aos-delay="300">
                   <i class="bi bi-telephone"></i>
                   <h3>Call Us</h3>
-                  <p>+1 5589 55488 55</p>
+                  <p>06126367272</p>
                 </div>
               </div><!-- End Info Item -->
 
@@ -247,31 +247,32 @@
           </div>
 
           <div class="col-lg-6">
-            <form action="forms/contact.php" method="post" class="php-email-form" data-aos="fade-up" data-aos-delay="500">
+            <form id="contactForm" class="php-email-form" data-aos="fade-up" data-aos-delay="500">
+              @csrf
               <div class="row gy-4">
 
                 <div class="col-md-6">
-                  <input type="text" name="name" class="form-control" placeholder="Your Name" required="">
+                  <input type="text" name="name" class="form-control" placeholder="Your Name" required>
                 </div>
 
                 <div class="col-md-6 ">
-                  <input type="email" class="form-control" name="email" placeholder="Your Email" required="">
+                  <input type="email" class="form-control" name="email" placeholder="Your Email" required>
                 </div>
 
                 <div class="col-md-12">
-                  <input type="text" class="form-control" name="subject" placeholder="Subject" required="">
+                  <input type="text" class="form-control" name="subject" placeholder="Subject" required>
                 </div>
 
                 <div class="col-md-12">
-                  <textarea class="form-control" name="message" rows="4" placeholder="Message" required=""></textarea>
+                  <textarea class="form-control" name="message" rows="4" placeholder="Message" required></textarea>
                 </div>
 
                 <div class="col-md-12 text-center">
-                  <div class="loading">Loading</div>
-                  <div class="error-message"></div>
-                  <div class="sent-message">Your message has been sent. Thank you!</div>
+                  <div class="loading" style="display: none;">Loading...</div>
+                  <div class="error-message" style="display: none;"></div>
+                  <div class="sent-message" style="display: none;">Your message has been sent. Thank you!</div>
 
-                  <button type="submit">Send Message</button>
+                  <button type="submit" class="btn btn-primary">Send Message</button>
                 </div>
 
               </div>
@@ -295,9 +296,9 @@
             <span class="sitename">Makombi</span>
           </a>
           <div class="footer-contact pt-3">
-            <p>A108 Adam Street</p>
-            <p>New York, NY 535022</p>
-            <p class="mt-3"><strong>Phone:</strong> <span>+1 5589 55488 55</span></p>
+            <p>Jl. Kartini</p>
+            <p>Kec. Binjai Kota, Kota Binjai, Sumatera Utara 20741</p>
+            <p class="mt-3"><strong>Phone:</strong> <span>06126367272</span></p>
             <p><strong>Email:</strong> <span>info@example.com</span></p>
           </div>
           <div class="social-links d-flex mt-4">
@@ -314,7 +315,6 @@
             <li><i class="bi bi-chevron-right"></i> <a href="#">Informasi</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="#">Galeri</a></li>
             <li><i class="bi bi-chevron-right"></i> <a href="#">Kontak</a></li>
-            <li><i class="bi bi-chevron-right"></i> <a href="#">Privacy policy</a></li>
           </ul>
         </div>
 
@@ -352,6 +352,60 @@
 
   <!-- Main JS File -->
     <script src="{{ asset('js/main.js') }}"></script>
+
+    <!-- Contact Form JavaScript -->
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+        const contactForm = document.getElementById('contactForm');
+        const loading = document.querySelector('.loading');
+        const errorMessage = document.querySelector('.error-message');
+        const sentMessage = document.querySelector('.sent-message');
+
+        contactForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          // Show loading
+          loading.style.display = 'block';
+          errorMessage.style.display = 'none';
+          sentMessage.style.display = 'none';
+
+          // Get form data
+          const formData = new FormData(contactForm);
+
+          // Send AJAX request
+          fetch('/contact', {
+            method: 'POST',
+            body: formData,
+            headers: {
+              'X-CSRF-TOKEN': document.querySelector('input[name="_token"]').value
+            }
+          })
+          .then(response => response.json())
+          .then(data => {
+            loading.style.display = 'none';
+            
+            if (data.success) {
+              sentMessage.style.display = 'block';
+              contactForm.reset();
+              
+              // Hide success message after 5 seconds
+              setTimeout(() => {
+                sentMessage.style.display = 'none';
+              }, 5000);
+            } else {
+              errorMessage.textContent = data.message || 'Terjadi kesalahan. Silakan coba lagi.';
+              errorMessage.style.display = 'block';
+            }
+          })
+          .catch(error => {
+            loading.style.display = 'none';
+            errorMessage.textContent = 'Terjadi kesalahan. Silakan coba lagi.';
+            errorMessage.style.display = 'block';
+            console.error('Error:', error);
+          });
+        });
+      });
+    </script>
 
     </body>
 </html>

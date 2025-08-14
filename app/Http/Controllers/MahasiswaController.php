@@ -45,6 +45,9 @@ class MahasiswaController extends Controller
 
             $mahasiswa = Mahasiswa::create(array_merge($validated, ['file' => $filePath]));
 
+            // Create notification for new registration
+            \App\Http\Controllers\NotificationController::createRegistrationNotification($mahasiswa->nama);
+
             return redirect()->route('mahasiswa.register_success')->with('success_message', 'Registrasi mahasiswa berhasil!');
         } catch (\Throwable $th) {
             throw $th;

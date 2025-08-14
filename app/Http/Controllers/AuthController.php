@@ -12,7 +12,10 @@ class AuthController extends Controller
 {
     public function showLogin()
     {
-        return view('auth.login');
+        return view('auth.login')->with([
+            'errors' => session('errors') ?? new \Illuminate\Support\ViewErrorBag(),
+            'old' => session('old') ?? []
+        ]);
     }
 
     public function login(Request $request)
